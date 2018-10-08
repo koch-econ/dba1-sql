@@ -23,3 +23,6 @@ insert into hr.big select * from hr.big ;
 
 SELECT * FROM HR.COUNTRIES;
 
+
+select * from v$bgprocess 
+where paddr <>'00'; 
