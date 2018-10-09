@@ -45,6 +45,9 @@ alter system checkpoint ;
 
 --System altered.
 
+startup noumount 
+
+
 startup force
 --ORA-00823: Specified value of sga_target greater than sga_max_size
 --ORA-01078: failure in processing system parameters
@@ -76,6 +79,11 @@ create spfile from memory;
 
 --File created.
 
+help startup
 
+alter system enable RESTRICTED SESSION;
+select logins from v$instance; 
+alter system disable RESTRICTED SESSION;
+select logins from v$instance; 
 
 
