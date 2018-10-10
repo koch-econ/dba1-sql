@@ -115,3 +115,5 @@ alter database
  move datafile '/u01/app/oracle/oradata/mydb0/demo01.dbf' to '/u01/data/demo01.dbf' ; 
  
  
+ 
+ 
