@@ -99,7 +99,7 @@ insert into student1.memb_temp
    select * from student1.members where salary = 75000 ;
 select * from student1.memb_temp;
 
- 
+connect student1/student1@db0
 select * from student1.memb_temp;
 
  
