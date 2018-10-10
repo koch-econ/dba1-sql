@@ -87,7 +87,19 @@ alter database datafile 2 offline;
 alter database datafile 2 online;
 
 
+create global temporary table student1.memb_temp on commit preserve rows
+as select * from STUDENT1.members where 1=2;
 
+
+insert into student1.memb_temp
+   select * from student1.members where salary = 30000 ;
+
+connect student1/student1@db0
+insert into student1.memb_temp
+   select * from student1.members where salary = 75000 ;
+select * from student1.memb_temp;
 
  
+select * from student1.memb_temp;
+
  
