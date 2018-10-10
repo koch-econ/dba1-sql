@@ -1,1 +1,4 @@
 nls_sort characherset 
+
+flashback table t1 to before drop ;
+
