@@ -102,4 +102,16 @@ select * from student1.memb_temp;
 connect student1/student1@db0
 select * from student1.memb_temp;
 
+
+select * from dba_data_files ;
+alter database datafile '/u01/app/oracle/oradata/mydb0/demo01.dbf' online ;
+
+
+alter database datafile '/u01/app/oracle/oradata/mydb0/demo01.dbf' resize 10m ;
+
+alter database datafile '/u01/app/oracle/oradata/mydb0/demo01.dbf' autoextend on next 5m; 
+
+alter database 
+ move datafile '/u01/app/oracle/oradata/mydb0/demo01.dbf' to '/u01/data/demo01.dbf' ; 
+ 
  
