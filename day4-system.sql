@@ -38,3 +38,17 @@ where lastname='Zona' ;
 
 alter table student1.memb2 enable row movement ;
 flashback table student1.memb2 to timestamp to_timestamp('11.10.18 11:58:16,000000000') ;
+
+select * from student1.memb2;
+
+
+sho parameter undo
+
+select 60*60*8 from dual ;
+alter system set undo_retention=28800 ;
+
+
+
+
+alter user dbsnmp identified by oracle account unlock ;
+
