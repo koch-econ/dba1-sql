@@ -86,3 +86,20 @@ show parameter auth
 create user ops$user1 identified externally ;
 
 grant create session to  ops$user1 ;
+
+create user glob_vpup identified globally as 'cn=Vasiliy Pupkin,ou=academy,o=lanit' ;
+
+
+alter user user_pw identified by abc123 ;
+
+
+select * from dba_source
+where regexp_like (name , 'verify','i') ;
+
+
+grant connect ,resource to user2 identified by 123; 
+
+connect user2/123@db0
+select * from user_users ;
+
+
