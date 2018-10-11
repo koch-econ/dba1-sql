@@ -87,3 +87,5 @@ alter system disable RESTRICTED SESSION;
 select logins from v$instance; 
 
 
+
+

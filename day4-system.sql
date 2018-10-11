@@ -35,3 +35,6 @@ select m2.lastname, m2.salary, versions_starttime, versions_endtime, versions_op
 from student1.memb2
         versions between scn minvalue and maxvalue  m2 
 where lastname='Zona' ; 
+
+alter table student1.memb2 enable row movement ;
+flashback table student1.memb2 to timestamp to_timestamp('11.10.18 11:58:16,000000000') ;
