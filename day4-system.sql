@@ -52,3 +52,7 @@ alter system set undo_retention=28800 ;
 
 alter user dbsnmp identified by oracle account unlock ;
 
+
+
+alter database enable block change tracking ;
+
