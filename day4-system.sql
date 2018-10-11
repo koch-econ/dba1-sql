@@ -56,3 +56,33 @@ alter user dbsnmp identified by oracle account unlock ;
 
 alter database enable block change tracking ;
 
+
+
+
+select * from dba_profiles;
+
+
+create sequence student1.memb2_seq start with 510 ;
+
+insert into student1.memb2( memberid, lastname) 
+values( student1.memb2_seq.nextval, 'Pupkin') ;
+
+insert into student1.memb2( memberid, lastname) 
+values( student1.memb2_seq.nextval, 'Mupkin') ;
+
+select student1.memb2_seq.currval from dual ;
+
+
+
+
+create user user_pw identified by 123 ;
+grant connect to user_pw ;
+
+connect user_pw/123@db0
+select * from user_users ;
+
+show parameter prefix
+show parameter auth
+create user ops$user1 identified externally ;
+
+grant create session to  ops$user1 ;
