@@ -67,3 +67,104 @@ grant select on hr.employees to student2;
 
 SELECT grantee, owner, table_name, grantor, privilege, grantable
 FROM dba_tab_privs WHERE grantee = 'STUDENT1';
+
+
+
+
+
+create role hr_clerk ;
+create role hr_manager ;
+
+grant hr_clerk to hr_manager ;
+
+
+grant hr_clerk to student2 ;
+
+grant hr_manager to student1 ;
+
+
+connect student2/student2@db0
+select * from session_roles; 
+
+revoke hr_clerk from student2 ;
+connect student2/student2@db0
+select * from session_roles; 
+
+grant hr_manager , connect , resource to  mgr_user identified by 123 ;
+
+grant hr_clerk , connect , resource to  clerk_user identified by 123 ; 
+
+grant update , select on STUDENT1.members to hr_clerk ;
+
+connect mgr_user/123@db0
+update STUDENT1.members set salary = salary * 2;
+rollback; 
+
+grant insert , delete on STUDENT1.members to hr_manager;
+connect clerk_user/123@db0
+delete from  STUDENT1.members ;
+rollback; 
+
+connect mgr_user/123@db0
+delete from  STUDENT1.members ;
+rollback; 
+
+
+connect mgr_user/123@db0
+set role hr_manager;
+delete from  STUDENT1.members ;
+rollback; 
+
+connect mgr_user/123@db0
+set role all except resource ;
+select * from session_roles; 
+
+connect mgr_user/123@db0
+set role none;
+select * from session_roles; 
+
+create role vacation_dba identified by 123; 
+grant vacation_dba to mgr_user ;
+create role checked_by_proc identified ing check_proc ;
+
+-- standard audit 
+
+show parameter audit_trail
+
+alter system set audit_trail=DB,EXtended scope=spfile; 
+select * from dba_audit_trail ; -- SYS.AUD$ 
+
+alter system set audit_trail=XML,extended scope=spfile  ;
+select * from V$xml_audit_trail ;
+
+alter system set audit_trail=OS scope=spfile  ;
+
+
+AUDIT create session;
+audit select any table ;
+SELECT * FROM DBA_PRIV_AUDIT_OPTS;
+
+
+connect mgr_user/123@db0
+select * from hr.countries; 
+
+
+SELECT * FROM  UNIFIED_AUDIT_TRAIL;
+
+
+desc DBMS_AUDIT_MGMT
+
+info DBMS_AUDIT_MGMT
+
+
+SELECT distinct policy_name FROM  AUDIT_UNIFIED_POLICIES; 
+
+
+SELECT * FROM audit_unified_enabled_policies;
+
+noaudit policy ora_secureconfig; 
+
+SELECT * FROM audit_unified_enabled_policies;
+audit policy ora_secureconfig; 
+
+SELECT * FROM audit_unified_enabled_policies;
