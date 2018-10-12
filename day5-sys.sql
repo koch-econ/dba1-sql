@@ -168,3 +168,80 @@ SELECT * FROM audit_unified_enabled_policies;
 audit policy ora_secureconfig; 
 
 SELECT * FROM audit_unified_enabled_policies;
+
+
+ SELECT * FROM AUDITABLE_SYSTEM_ACTIONS ;
+ 
+ SELECT * FROM AUDITABLE_SYSTEM_ ;
+ 
+ 
+ -- quotas 
+ 
+ select 'I can''t reading' from dual ;
+ 
+ select q'!I can't reading!' from dual ;
+ 
+ select q'<I can't reading>' from dual ;
+ 
+ select q'/I can't reading/' from dual ;
+ 
+ 
+CREATE AUDIT POLICY SiderisAudit 
+PRIVILEGES create any table,
+           drop any table, create trigger
+ACTIONS
+    select on student1.sales,
+    update on student1.customers 
+ROLES    
+    capture_admin, audit_admin
+WHEN q'|SYS_CONTEXT('USERENV', 'SESSION_USER') = 'STUDENT1'|'
+EVALUATE PER SESSION;
+ 
+audit policy siderisAudit; 
+
+SELECT * FROM audit_unified_enabled_policies;
+
+
+spool d:\share\spool.txt
+
+select /*csv*/  * from student1.members;
+
+set spool off
+
+
+
+spool d:\share\spool.txt
+
+select /*insert*/  * from student1.members;
+select /*json*/  * from student1.members;
+select /*loader*/  * from student1.members;
+
+
+set spool off 
+
+
+
+select * from dba_directories;
+
+
+create directory datadir as '/u01/data' ;
+
+grant read,write , execute on directory datadir to student1; 
+
+select * from dba_datapump_jobs;
+
+
+alter database datafile 2   autoextend off;
+
+
+SELECT * FROM dba_resumable ;
+
+
+alter database datafile 2   autoextend on;
+
+SELECT * FROM dba_resumable ;
+
+
+
+
+select * from v$session_longops;
